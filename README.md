@@ -19,7 +19,7 @@ This function will generate an unique random string of a defined length, each ti
                 var newID3 = uniqueRandomId(10); // "RxXqQi8STj"
 
 # Arrray functions
-Extra Array functions not available always
+Extra *Array* functions not available always
 
 ## forEach
 Loops through each element of an array & perform a handler operation. 
