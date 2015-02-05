@@ -107,7 +107,9 @@ h1.header{
     margin: 0;
 }
 
-h4.heading{
+h1.heading, h2.heading, 
+h3.heading, h4.heading, 
+h5.heading, h6.heading{
     margin: 10px 4px;
 }
 
