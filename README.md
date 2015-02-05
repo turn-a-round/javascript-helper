@@ -38,5 +38,5 @@ Loops through each element of an array & perform a handler operation.
                     this.append("<br>");
                 }, container);
 ###Result
->>>![alt tag](images/array_forEach.png)
+![alt tag](images/array_forEach.png)
 
