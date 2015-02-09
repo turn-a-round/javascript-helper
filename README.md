@@ -7,6 +7,9 @@ Generate a random string of a defined length (5 by default). To change the defau
     function:   randomId
     parameter:  charlen (Length of the ID)
     usage:      var newID = randomId(10); // "yUuVpC6E4q"
+Note: you can add any additional characters in the "randomCharset" variable if you want them to be included in the generated id
+
+    e.g.:      randomCharset += 'áāćÃȱɜ';
 
 # Unique Random ID generator:
 This function will generate an unique random string of a defined length, each time it's called.
