@@ -41,9 +41,15 @@
 
             </div>
         </div>
-        <div class="content ui-corner-all" id="divArrayContainer">
+        <div class="content ui-corner-all" id="divArrayForEachContainer">
             <h4 class="heading">forEach</h4>
             <div id="divArrayForEach" class="result">
+
+            </div>
+        </div>
+        <div class="content ui-corner-all" id="divArrayFilterContainer">
+            <h4 class="heading">filter</h4>
+            <div id="divArrayFilter" class="result">
 
             </div>
         </div>
@@ -67,11 +73,34 @@
                 });
                 
                 // Array
+                var container, Arr;
                 //forEach
-                var container = $("#divArrayForEach")
-                var Arr = [25, 20, 38];
+                container = $("#divArrayForEach")
+                Arr = [25, 20, 38];
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
                 Arr.forEach(function(elem, i, arr){
                     $("<span>").text(i.toString()+': '+elem.toString()).appendTo(this);
+                    this.append("<br>");
+                }, container);
+
+                //filter
+                container = $("#divArrayFilter")
+                Arr = [25, 20, 38, 40, 93, 61, 34, 58];
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Filters all odd numbers
+                container.append("<h5>Odd Numbers</h5>");
+                Arr.filter(function(elem, i, arr){
+                    return elem % 2;
+                }).forEach(function(elem, i, arr){
+                    $("<span>").text((i+1).toString()+': '+elem.toString()).appendTo(this);
+                    this.append("<br>");
+                }, container);
+                // Filters all even numbers
+                container.append("<h5>Even Numbers</h5>");
+                Arr.filter(function(elem, i, arr){
+                    return ((elem % 2) === 0);
+                }).forEach(function(elem, i, arr){
+                    $("<span>").text((i+1).toString()+': '+elem.toString()).appendTo(this);
                     this.append("<br>");
                 }, container);
 
