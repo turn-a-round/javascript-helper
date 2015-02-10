@@ -122,7 +122,7 @@ NOTE: this function does not modify the original array.
 ###Result
 ![alt tag](images/array_filter.png)
 
-## filterFirst
+## filterFirst & filterLast
 Works the same way as filter, but returns the first element that matches, instead of an array. 
 
 NOTE: this function does not modify the original array.
