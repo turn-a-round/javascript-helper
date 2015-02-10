@@ -7,6 +7,12 @@
 
 // helper.isIE.js
 // Check for IE version
+// Default string of < IE 10:
+//      Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)
+// Default string of IE 11:
+//      Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko
+// Default string of IE 12:
+//      Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0 
 function msieversion() {
     try {
         var ua = window.navigator.userAgent;
@@ -114,7 +120,7 @@ var isIE = msieversion() ? true : false;
             for (var i = arrLength - 1; i >= 0; i--) {
                 this[i] = handler.call(thisArg || this, this[i], i, this); // as depicted in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
             }
-            return this.reverse();
+            return this;
         };
     //}
 

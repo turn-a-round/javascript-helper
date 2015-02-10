@@ -32,7 +32,8 @@
         <![endif]-->
         <div class="header"><h1 class="header">JavaScript helper compilation</h1></div>   
         <div class="content ui-corner-all" id="divRandomContainer">
-            <label for="txtRandomLength">Length of Random Ids</label>
+            <h4 class="heading">Random Id Generator</h4>
+            <label for="txtRandomLength">Length of Random Ids (default <span id="spnDefaultRandomCharLen"></span>)</label>
             <input type="text" class="text" id="txtRandomLength" style="width: 50px;"/>
             <button id="btnGenerateRandom" style="margin: 5px;">Generate Unique Random IDs</button>
             <button id="btnClearRandom" style="margin: 5px;">Clear List</button>
@@ -41,20 +42,36 @@
 
             </div>
         </div>
-        <div class="content ui-corner-all" id="divArrayForEachContainer">
-            <h4 class="heading">forEach</h4>
-            <div id="divArrayForEach" class="result">
+        <div>
+            <div class="content limited ui-corner-all" id="divArrayForEachContainer">
+                <h4 class="heading">forEach</h4>
+                <div id="divArrayForEach" class="result">
 
+                </div>
             </div>
-        </div>
-        <div class="content ui-corner-all" id="divArrayFilterContainer">
-            <h4 class="heading">filter</h4>
-            <div id="divArrayFilter" class="result">
+            <div class="content limited ui-corner-all" id="divArrayFilterContainer">
+                <h4 class="heading">filter</h4>
+                <div id="divArrayFilter" class="result">
 
+                </div>
+            </div>
+            <div class="content limited ui-corner-all" id="divArrayFilterFirstLastContainer">
+                <h4 class="heading">filterFirst & filterFirst</h4>
+                <div id="divArrayFilterFirstLast" class="result">
+
+                </div>
+            </div>
+            <div class="content limited ui-corner-all" id="divArrayMapContainer">
+                <h4 class="heading">filterFirst & filterFirst</h4>
+                <div id="divArrayMap" class="result">
+
+                </div>
             </div>
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
+                defaultRandomIdLength = 10;
+                $("#spnDefaultRandomCharLen").text(defaultRandomIdLength.toString());
                 $("#btnGenerateRandom").button().on('click', function () {
                     var len = $('#txtRandomLength').val();
                     len = parseInt(len, 10) !== NaN ? parseInt(len, 10) : 10;
@@ -66,43 +83,85 @@
                 $("#btnClearRandom").button().on('click', function () {
                     $('#divRandomIds').empty();
                 });
-                $('#txtRandomLength').enterKey(function (){
+                $('#txtRandomLength').enterKey(function () {
                     $("#btnGenerateRandom").trigger('click');
-                }).escapeKey(function (){
+                }).escapeKey(function () {
                     $("#btnClearRandom").trigger('click');
                 });
-                
+
                 // Array
                 var container, Arr;
                 //forEach
                 container = $("#divArrayForEach")
                 Arr = [25, 20, 38];
-                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
-                Arr.forEach(function(elem, i, arr){
-                    $("<span>").text(i.toString()+': '+elem.toString()).appendTo(this);
+                container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
+                Arr.forEach(function (elem, i, arr) {
+                    $("<span>").text(i.toString() + ': ' + elem.toString()).appendTo(this);
                     this.append("<br>");
                 }, container);
 
                 //filter
                 container = $("#divArrayFilter")
                 Arr = [25, 20, 38, 40, 93, 61, 34, 58];
-                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
                 // Filters all odd numbers
                 container.append("<h5>Odd Numbers</h5>");
-                Arr.filter(function(elem, i, arr){
+                Arr.filter(function (elem, i, arr) {
                     return elem % 2;
-                }).forEach(function(elem, i, arr){
-                    $("<span>").text((i+1).toString()+': '+elem.toString()).appendTo(this);
+                }).forEach(function (elem, i, arr) {
+                    $("<span>").text((i + 1).toString() + ': ' + elem.toString()).appendTo(this);
                     this.append("<br>");
                 }, container);
                 // Filters all even numbers
                 container.append("<h5>Even Numbers</h5>");
-                Arr.filter(function(elem, i, arr){
+                Arr.filter(function (elem, i, arr) {
                     return ((elem % 2) === 0);
-                }).forEach(function(elem, i, arr){
-                    $("<span>").text((i+1).toString()+': '+elem.toString()).appendTo(this);
+                }).forEach(function (elem, i, arr) {
+                    $("<span>").text((i + 1).toString() + ': ' + elem.toString()).appendTo(this);
                     this.append("<br>");
                 }, container);
+
+                //filterFirst
+                container = $("#divArrayFilterFirstLast")
+                Arr = [25, 20, 38, 40, 93, 61, 34, 58];
+                container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
+                // Filters First odd numbers
+                container.append("<h5>First Odd Numbers</h5>");
+                var resultOdd = Arr.filterFirst(function (elem, i, arr) {
+                    return elem % 2;
+                });
+                $("<span>").text(resultOdd.toString()).appendTo(container);
+                container.append("<br>");
+                // Filters First even numbers
+                container.append("<h5>First Even Numbers</h5>");
+                var resultEven = Arr.filterFirst(function (elem, i, arr) {
+                    return ((elem % 2) === 0);
+                });
+                $("<span>").text(resultEven.toString()).appendTo(container);
+                container.append("<br>");
+                // Filters Last odd numbers
+                container.append("<h5>Last Odd Numbers</h5>");
+                var resultOdd = Arr.filterLast(function (elem, i, arr) {
+                    return elem % 2;
+                });
+                $("<span>").text(resultOdd.toString()).appendTo(container);
+                container.append("<br>");
+                // Filters First even numbers
+                container.append("<h5>Last Even Numbers</h5>");
+                var resultEven = Arr.filterLast(function (elem, i, arr) {
+                    return ((elem % 2) === 0);
+                });
+                $("<span>").text(resultEven.toString()).appendTo(container);
+                container.append("<br>");
+
+                //map
+                container = $("#divArrayMap")
+                Arr = [25, 20, 38, 40, 93, 61, 34, 58];
+                container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
+                // Filters First odd numbers
+                container.append("<h5>Array after mapping: [" + Arr.map(function (elem, i, arr) {
+                    return (elem % 2 ? (elem * 2) : (elem * 5));
+                }).join(', ') + "]</h5>");
 
             });
         </script>

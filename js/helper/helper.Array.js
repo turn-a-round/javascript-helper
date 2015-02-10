@@ -53,7 +53,7 @@ if (typeof Array.prototype.map !== 'function') {
         for (var i = arrLength - 1; i >= 0; i--) {
             this[i] = handler.call(thisArg || this, this[i], i, this); // as depicted in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
         }
-        return this.reverse();
+        return this;
     };
 }
 if (typeof Array.prototype.indexOf !== 'function') {

@@ -1,5 +1,5 @@
 # javascript-helper
-a compilation of many useful codes, frequently used in JavaScript, plus much more
+a compilation of many useful codes, frequently used in JavaScript, plus much more.
 
 # Check for IE:
 I know how It is a big pain in the a$$ to work with IE (our beloved "Internet Explorer").
@@ -88,7 +88,7 @@ The filter handler function must return
     1. true or
     2. a non-zero (0) number or 
     3. a non-null object 
-to indicate the current array object should be included in the output Array.
+to determine, whether the array object in the current loop, should be included in the output Array.
 
 NOTE: this function does not modify the original array.
 
@@ -121,4 +121,60 @@ NOTE: this function does not modify the original array.
                 }, container);
 ###Result
 ![alt tag](images/array_filter.png)
+
+## filterFirst
+Works the same way as filter, but returns the first element that matches, instead of an array. 
+
+NOTE: this function does not modify the original array.
+
+    function:   Array.filterFirst
+    parameter:  handler (the handler function)
+                    parameter:  elem    (Each Element)
+                                index   (Current Index)
+                                arr     (Whole Array)
+                thisArg (optional "this" value passed to handler function)
+    returns:    array (the array after the filtration completes)
+    usage:      var container = $("#SomeDivToShow")
+                var Arr = [25, 20, 38, 40, 93, 61, 34, 58];
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Filters First odd numbers
+                container.append("<h5>First Odd Numbers</h5>");
+                var resultOdd = Arr.filterFirst(function(elem, i, arr){
+                    return elem % 2;
+                });
+                $("<span>").text(resultOdd.toString()).appendTo(container);
+                container.append("<br>");
+                
+                // Filters First even numbers
+                container.append("<h5>First Even Numbers</h5>");
+                var resultEven = Arr.filterFirst(function(elem, i, arr){
+                    return ((elem % 2) === 0);
+                });
+                $("<span>").text(resultEven.toString()).appendTo(container);
+                container.append("<br>");
+###Result
+![alt tag](images/array_forEach_extended.png)
+
+
+## map
+Apply custom functions on each element of an Array. As depicted in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+NOTE: **this function _modifies_ the original array**
+
+    function:   Array.map
+    parameter:  handler (the handler function)
+                    parameter:  elem    (Each Element)
+                                index   (Current Index)
+                                arr     (Whole Array)
+                thisArg (optional "this" value passed to handler function)
+    returns:    array (the array after the mapping completes)
+    usage:      var container = $("#SomeDivToShow")
+                var Arr = [25, 20, 38, 40, 93, 61, 34, 58];
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Filters First odd numbers
+                container.append("<h5>Array after mapping: ["+Arr.map(function(elem, i, arr){
+                    return ((elem % 2) ? (elem * 2) : (elem * 5));
+                }).join(', ')+"]</h5>");
+###Result
+![alt tag](images/array_map.png)
 

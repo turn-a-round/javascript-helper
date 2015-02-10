@@ -125,6 +125,12 @@ div.content{
     clear: both;
 }
 
+div.content.limited{
+    max-width: 250px;
+    float: left;
+    clear: none;
+}
+
 div.content .text {
     border-radius: 5px;
     -moz-border-radius: 5px;
