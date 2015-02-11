@@ -67,6 +67,12 @@
 
                 </div>
             </div>
+            <div class="content limited ui-corner-all" id="divArraySearchContainer">
+                <h4 class="heading">Searching with indexOf, lastIndexOf, iIndexOf & iLastIndexOf</h4>
+                <div id="divArraySearch" class="result">
+
+                </div>
+            </div>
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -158,10 +164,30 @@
                 container = $("#divArrayMap")
                 Arr = [25, 20, 38, 40, 93, 61, 34, 58];
                 container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
-                // Filters First odd numbers
                 container.append("<h5>Array after mapping: [" + Arr.map(function (elem, i, arr) {
                     return (elem % 2 ? (elem * 2) : (elem * 5));
                 }).join(', ') + "]</h5>");
+                
+                //searching
+                container = $("#divArraySearch")
+                Arr = [25, 20, 38, 40, 93, 61, 20, 34, 58];
+                container.append("<h4>Searching Array of numbers</h4>");
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Find First occurrence
+                var searchItem = 20;
+                container.append("<h5>indexOf ("+searchItem.toString()+"): "+Arr.indexOf(searchItem).toString()+"</h5>");
+                container.append("<h5>indexOf ("+(50).toString()+"): "+Arr.indexOf(50).toString()+"</h5>");
+                // Find Last occurrence
+                container.append("<h5>lastIndexOf ("+searchItem.toString()+"): "+Arr.lastIndexOf(searchItem).toString()+"</h5>");
+                Arr = ["Apple", "Banana", "Grape", "Mango"];
+                container.append("<h4>Searching Array of strings</h4>");
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Exact string search
+                var searchItem = "Banana";
+                container.append("<h5>indexOf ("+searchItem+"): "+Arr.indexOf(searchItem).toString()+"</h5>");
+                // Case-insensitive string search
+                searchItem = "grApE";
+                container.append("<h5>iIndexOf ("+searchItem+"): "+Arr.iIndexOf(searchItem).toString()+"</h5>");
 
             });
         </script>

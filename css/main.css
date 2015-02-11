@@ -126,7 +126,7 @@ div.content{
 }
 
 div.content.limited{
-    max-width: 250px;
+    max-width: 350px;
     float: left;
     clear: none;
 }
@@ -150,6 +150,14 @@ div.content div.result {
     font-size: 12pt;
     font-family: monospace;
     background-color: #f7f7f7;
+}
+div.result h5{
+    margin: 5px 0;
+}
+
+div.result span{
+    font-size: 10pt;
+    font-family: monospace;
 }
 
 

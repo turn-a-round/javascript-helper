@@ -44,6 +44,10 @@ function msieversion() {
 // Global variable to detect IE
 var isIE = msieversion() ? true : false;
 
+function isArray(o) {
+    return Object.prototype.toString.call(o) === '[object Array]';
+}
+
 (function () {
     // Avoid `console` errors in browsers that lack a console.
     // Thanks to [HTML5 Boilerplate](http://html5boilerplate.com)
@@ -127,7 +131,18 @@ var isIE = msieversion() ? true : false;
     if (typeof Array.prototype.indexOf !== 'function') {
         Array.prototype.indexOf = function (searchItem) {
             var arrLength = this.length;
-            for (var i = arrLength - 1; i >= 0; i--) {
+            for (var i = 0; i < arrLength; i++) {
+                if (this[i] === searchItem)
+                    return i;
+            }
+            return -1;
+        };
+    }
+
+    if (typeof Array.prototype.lastIndexOf !== 'function') {
+        Array.prototype.lastIndexOf = function (searchItem) {
+            var arrLength = this.length;
+            for (var i = arrLength-1; i >= 0; i--) {
                 if (this[i] === searchItem)
                     return i;
             }
@@ -138,6 +153,22 @@ var isIE = msieversion() ? true : false;
     // Case insensitive search
     if (typeof Array.prototype.iIndexOf !== 'function') {
         Array.prototype.iIndexOf = function (searchItem) {
+            var arrLength = this.length;
+            for (var i = 0; i < arrLength; i++) {
+                try {
+                    if (this[i].toLowerCase() === searchItem.toLowerCase())
+                        return i;
+                }
+                catch (e) {
+                    continue;
+                }
+            }
+            return -1;
+        };
+    }
+
+    if (typeof Array.prototype.iLastIndexOf !== 'function') {
+        Array.prototype.iLastIndexOf = function (searchItem) {
             var arrLength = this.length;
             for (var i = arrLength - 1; i >= 0; i--) {
                 try {
@@ -282,11 +313,6 @@ var isIE = msieversion() ? true : false;
     }
 
 }());
-
-function isArray(o) {
-    return Object.prototype.toString.call(o) === '[object Array]';
-}
-
 
 // Random Id generator of definitive length
 var randomCharset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', // add your unique character to this list to enrich id

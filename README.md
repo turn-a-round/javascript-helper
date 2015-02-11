@@ -46,7 +46,7 @@ This function will generate an unique random string of a defined length, each ti
 # Arrray functions
 Extra *Array* functions not available always
 
-## isArray
+#### isArray
 Determines if an object is an Array type. [This one](http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/) really helps/kills me to understand. 
 
     function:   isArray
@@ -58,7 +58,7 @@ Determines if an object is an Array type. [This one](http://perfectionkills.com/
                 var result1 = isArray(arr); // true
                 var result2 = isArray(noArr); // false
 
-## forEach
+#### forEach
 Loops through each element of an array & perform a handler operation.
 
 NOTE: this function does not modify the original array.
@@ -77,10 +77,10 @@ NOTE: this function does not modify the original array.
                     $("<span>").text(i.toString()+': '+elem.toString()).appendTo(this);
                     this.append("<br>");
                 }, container);
-###Result
+#####Result
 ![alt tag](images/array_forEach.png)
 
-## filter
+#### filter
 Loops through each element of an array & performs a handler operation with filter conditions. 
 This function does not take null/empty array elements into consideration & hence, 
 they are filtered out by default. 
@@ -119,15 +119,15 @@ NOTE: this function does not modify the original array.
                     $("<span>").text((i+1).toString()+': '+elem.toString()).appendTo(this);
                     this.append("<br>");
                 }, container);
-###Result
+#####Result
 ![alt tag](images/array_filter.png)
 
-## filterFirst & filterLast
+#### filterFirst & filterLast
 Works the same way as filter, but returns the first element that matches, instead of an array. 
 
 NOTE: this function does not modify the original array.
 
-    function:   Array.filterFirst
+    function:   Array.filterFirst & Array.filterLast
     parameter:  handler (the handler function)
                     parameter:  elem    (Each Element)
                                 index   (Current Index)
@@ -152,11 +152,10 @@ NOTE: this function does not modify the original array.
                 });
                 $("<span>").text(resultEven.toString()).appendTo(container);
                 container.append("<br>");
-###Result
+#####Result
 ![alt tag](images/array_forEach_extended.png)
 
-
-## map
+#### map
 Apply custom functions on each element of an Array. As depicted in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 
 NOTE: **this function _modifies_ the original array**
@@ -171,10 +170,41 @@ NOTE: **this function _modifies_ the original array**
     usage:      var container = $("#SomeDivToShow")
                 var Arr = [25, 20, 38, 40, 93, 61, 34, 58];
                 container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
-                // Filters First odd numbers
                 container.append("<h5>Array after mapping: ["+Arr.map(function(elem, i, arr){
                     return ((elem % 2) ? (elem * 2) : (elem * 5));
                 }).join(', ')+"]</h5>");
-###Result
+#####Result
 ![alt tag](images/array_map.png)
+
+
+#### indexOf, lastIndexOf, iIndexOf & iLastIndexOf
+Get the 0 based index of the occurrence of an item in an Array. -1 is returned if not found. 
+*lastIndexOf* searches the Array from tail-end. 
+
+*iIndexOf* & *iLastIndexOf* are the case-insensitive version.
+
+    function:   Array.indexOf, Array.lastIndexOf, Array.iIndexOf & Array.iLastIndexOf
+    parameter:  searchItem (an item to search. May be number or string or an object etc.)
+    returns:    int (the 0 based index if found, -1 instead)
+    usage:      var container = $("#SomeDivToShow")
+                var Arr = [25, 20, 38, 40, 93, 61, 20, 34, 58];
+                container.append("<h4>Searching Array of numbers</h4>");
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Find First occurrence
+                var searchItem = 20;
+                container.append("<h5>indexOf ("+searchItem.toString()+"): "+Arr.indexOf(searchItem).toString()+"</h5>");
+                container.append("<h5>indexOf ("+(50).toString()+"): "+Arr.indexOf(50).toString()+"</h5>");
+                // Find Last occurrence
+                container.append("<h5>lastIndexOf ("+searchItem.toString()+"): "+Arr.lastIndexOf(searchItem).toString()+"</h5>");
+                Arr = ["Apple", "Banana", "Grape", "Mango"];
+                container.append("<h4>Searching Array of strings</h4>");
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                // Exact string search
+                var searchItem = "Banana";
+                container.append("<h5>indexOf ("+searchItem+"): "+Arr.indexOf(searchItem).toString()+"</h5>");
+                // Case-insensitive string search
+                searchItem = "grApE";
+                container.append("<h5>iIndexOf ("+searchItem+"): "+Arr.iIndexOf(searchItem).toString()+"</h5>");
+#####Result
+![alt tag](images/array_search.png)
 
