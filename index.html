@@ -42,10 +42,17 @@
 
             </div>
         </div>
+        <div class="header secondery"><h2 class="header">Array</h2></div>   
         <div>
             <div class="content limited ui-corner-all" id="divArrayForEachContainer">
                 <h4 class="heading">forEach</h4>
                 <div id="divArrayForEach" class="result">
+
+                </div>
+            </div>
+            <div class="content limited ui-corner-all" id="divArrayMaxContainer">
+                <h4 class="heading">max</h4>
+                <div id="divArrayMax" class="result">
 
                 </div>
             </div>
@@ -56,13 +63,13 @@
                 </div>
             </div>
             <div class="content limited ui-corner-all" id="divArrayFilterFirstLastContainer">
-                <h4 class="heading">filterFirst & filterFirst</h4>
+                <h4 class="heading">filterFirst & filterLast</h4>
                 <div id="divArrayFilterFirstLast" class="result">
 
                 </div>
             </div>
             <div class="content limited ui-corner-all" id="divArrayMapContainer">
-                <h4 class="heading">filterFirst & filterFirst</h4>
+                <h4 class="heading">map</h4>
                 <div id="divArrayMap" class="result">
 
                 </div>
@@ -70,6 +77,12 @@
             <div class="content limited ui-corner-all" id="divArraySearchContainer">
                 <h4 class="heading">Searching with indexOf, lastIndexOf, iIndexOf & iLastIndexOf</h4>
                 <div id="divArraySearch" class="result">
+
+                </div>
+            </div>
+            <div class="content limited ui-corner-all" id="divArraySumAvgContainer">
+                <h4 class="heading">sum & average</h4>
+                <div id="divArraySumAvg" class="result">
 
                 </div>
             </div>
@@ -98,7 +111,7 @@
                 // Array
                 var container, Arr;
                 //forEach
-                container = $("#divArrayForEach")
+                container = $("#divArrayForEach");
                 Arr = [25, 20, 38];
                 container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
                 Arr.forEach(function (elem, i, arr) {
@@ -107,11 +120,11 @@
                 }, container);
 
                 //filter
-                container = $("#divArrayFilter")
+                container = $("#divArrayFilter");
                 Arr = [25, 20, 38, 40, 93, 61, 34, 58];
                 container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
                 // Filters all odd numbers
-                container.append("<h5>Odd Numbers</h5>");
+                container.append("<h4>Odd Numbers</h4>");
                 Arr.filter(function (elem, i, arr) {
                     return elem % 2;
                 }).forEach(function (elem, i, arr) {
@@ -119,7 +132,7 @@
                     this.append("<br>");
                 }, container);
                 // Filters all even numbers
-                container.append("<h5>Even Numbers</h5>");
+                container.append("<h4>Even Numbers</h4>");
                 Arr.filter(function (elem, i, arr) {
                     return ((elem % 2) === 0);
                 }).forEach(function (elem, i, arr) {
@@ -127,33 +140,33 @@
                     this.append("<br>");
                 }, container);
 
-                //filterFirst
-                container = $("#divArrayFilterFirstLast")
+                //filterFirst & filterLast
+                container = $("#divArrayFilterFirstLast");
                 Arr = [25, 20, 38, 40, 93, 61, 34, 58];
                 container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
                 // Filters First odd numbers
-                container.append("<h5>First Odd Numbers</h5>");
+                container.append("<h4>First Odd Numbers</h4>");
                 var resultOdd = Arr.filterFirst(function (elem, i, arr) {
                     return elem % 2;
                 });
                 $("<span>").text(resultOdd.toString()).appendTo(container);
                 container.append("<br>");
                 // Filters First even numbers
-                container.append("<h5>First Even Numbers</h5>");
+                container.append("<h4>First Even Numbers</h4>");
                 var resultEven = Arr.filterFirst(function (elem, i, arr) {
                     return ((elem % 2) === 0);
                 });
                 $("<span>").text(resultEven.toString()).appendTo(container);
                 container.append("<br>");
                 // Filters Last odd numbers
-                container.append("<h5>Last Odd Numbers</h5>");
+                container.append("<h4>Last Odd Numbers</h4>");
                 var resultOdd = Arr.filterLast(function (elem, i, arr) {
                     return elem % 2;
                 });
                 $("<span>").text(resultOdd.toString()).appendTo(container);
                 container.append("<br>");
                 // Filters First even numbers
-                container.append("<h5>Last Even Numbers</h5>");
+                container.append("<h4>Last Even Numbers</h4>");
                 var resultEven = Arr.filterLast(function (elem, i, arr) {
                     return ((elem % 2) === 0);
                 });
@@ -161,15 +174,16 @@
                 container.append("<br>");
 
                 //map
-                container = $("#divArrayMap")
+                container = $("#divArrayMap");
                 Arr = [25, 20, 38, 40, 93, 61, 34, 58];
                 container.append("<h5>Array: [" + Arr.join(', ') + "]</h5>");
-                container.append("<h5>Array after mapping: [" + Arr.map(function (elem, i, arr) {
+                container.append("<h4>Mapped Array (odd x 2 & even x 5)</h4>");
+                container.append("<h5>[" + Arr.map(function (elem, i, arr) {
                     return (elem % 2 ? (elem * 2) : (elem * 5));
                 }).join(', ') + "]</h5>");
                 
                 //searching
-                container = $("#divArraySearch")
+                container = $("#divArraySearch");
                 Arr = [25, 20, 38, 40, 93, 61, 20, 34, 58];
                 container.append("<h4>Searching Array of numbers</h4>");
                 container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
@@ -188,7 +202,20 @@
                 // Case-insensitive string search
                 searchItem = "grApE";
                 container.append("<h5>iIndexOf ("+searchItem+"): "+Arr.iIndexOf(searchItem).toString()+"</h5>");
-
+                
+                // max
+                container = $("#divArrayMax");
+                Arr = [25, 38, 40, 93, 61, 20, 34, 58];
+                container.append("<h4>Get max in an Array of numbers</h4>");
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                container.append("<h5>max : "+Arr.max().toString()+"</h5>");
+                
+                // sum & average
+                container = $("#divArraySumAvg");
+                Arr = [25, 38, 40, 93, , undefined, "RER", "4", "3re", 5, new Object(), 61, 20, 34, 58];
+                container.append("<h5>Array: ["+Arr.join(', ')+"]</h5>");
+                container.append("<h5>sum : "+Arr.sum().toString()+"</h5>");
+                container.append("<h5>average : "+Arr.average().toString()+"</h5>");
             });
         </script>
     </body>

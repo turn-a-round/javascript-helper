@@ -12,6 +12,7 @@ function randomId(charlen) {
     charlen = charlen || defaultRandomIdLength;
     var wholeCharset = randomCharset || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // default fallback
     return (new Array(charlen)) //(isIE ? new Array(charlen) : Array.apply(0, Array(charlen)))
+            .fillHole()
             .map(function () {
                 return (function (charset) {
                     return charset.charAt(Math.floor(Math.random() * charset.length));

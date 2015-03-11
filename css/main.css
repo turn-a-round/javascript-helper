@@ -97,12 +97,20 @@ textarea {
    ========================================================================== */
 div.header{
     background: #465 no-repeat;
+    border-top: 4px solid #4D3F08;
     border-bottom: 4px solid #4D3F08;
     display: block;
     padding: 4px 10px;
 }
 
-h1.header{
+div.header.secondery{
+    border-top: 2px solid #4D3F08;
+    border-bottom: 2px solid #4D3F08;
+    padding: 4px 15px;
+    margin: 5px 0 2px;
+}
+
+h1.header, h2.header{
     color: #f1f1f1;
     margin: 0;
 }
@@ -150,6 +158,9 @@ div.content div.result {
     font-size: 12pt;
     font-family: monospace;
     background-color: #f7f7f7;
+}
+div.result h4{
+    margin: 2px 0 4px;
 }
 div.result h5{
     margin: 5px 0;
