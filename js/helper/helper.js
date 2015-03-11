@@ -236,7 +236,7 @@ function isArray(o) {
         };
     }
 
-    // discussion at http://stackoverflow.com/questions/10359907/array-sum-and-average
+    // inspired by discussion at http://stackoverflow.com/questions/10359907/array-sum-and-average
     if (typeof Array.prototype.sum !== 'function') {
         Array.prototype.sum = function () {
             var sum = 0;
