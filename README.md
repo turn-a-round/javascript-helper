@@ -9,7 +9,7 @@ and one boolean variable "isIE" for the sake of life & countless sleepless hours
     function:   msieversion
     parameter:  NONE
     returns:    integer (the version of the IE currently running or 0 if it's not IE)
-    usage:      var curIEVersion = msieversion(10); // 8
+    usage:      var curIEVersion = msieversion(); // 8
 
     variable:   isIE
     type:       boolean

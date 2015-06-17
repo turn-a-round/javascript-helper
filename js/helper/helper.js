@@ -260,6 +260,22 @@ function isArray(o) {
         };
     }
 
+    // Useful Array constructor. Found at http://www.2ality.com/2011/07/array-from.html & https://gist.github.com/rwaldron/1074126
+    if (typeof Array.from !== 'function') {
+        // Unary Array.from()
+        Array.from = function( arrayLike ) {
+            // return Array.prototype.slice.call(arrayLike);
+            return [].slice.call( arrayLike );
+        };
+    }
+    if (typeof Array.of !== 'function') {
+        // Variable arity Array.of()
+        Array.of = function() {
+            // return Array.prototype.slice.call(arguments);
+            return [].slice.call( arguments );
+        };
+    }
+
 // helper.String.js
     // Make a looooooooooooooooooooooooooong string to looooooooo...
     // the "..." endmarking can be specified
